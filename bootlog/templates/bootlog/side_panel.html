@@ -1,0 +1,26 @@
+
+<div class="row search-box">
+	<form role="search" method="GET" action="/s/">
+		<input id="id_q" class="form-control" type="text" placeholder="Search Blog Posts..." name="q" >
+	</form>
+</div>
+<div class="row">
+	<div class= "panel panel-default" ALIGN="CENTER">
+        <div class="panel-body">
+            <a class="btn btn-default active btn-block" href="/">Categories: All</a>
+        </div>
+		<div class="panel-body">
+			<ul class="nav nav-pills nav-stacked">
+				{%for category, vals in category_split.items %} 
+					<li>
+						<button onclick="window.location.href='/all/?category={{category}}'" class="btn btn-default btn-{{vals.colour}} btn-block" type="submit">
+							{{category}} 
+
+							<span class="badge">{{vals.count}}</span>
+						</button>
+					</li>
+				{%endfor%}
+			</ul>
+		</div>
+	</div>
+</div>
