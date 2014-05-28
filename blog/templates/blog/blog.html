@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% if not active_post %}
+        <div class="blog-header">
+            <h1 class="blog-title">It's deadlocked!</h1>
+            <p class="lead blog-description">Anton Blomberg's blog about programming and stuff</p>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            {% if active_post %}
+                <div class="blog-post single-post">
+                    <h2 class="blog-post-title">{{ active_post.title }}</h2>
+                    <p class="blog-post-meta">{{ active_post.pub_date|date:"d M, Y" }} by Anton Blomberg</p>
+                    {{ active_post.entry|safe }}
+                    <div class="blog-post-footer"></div>
+                </div>
+                <hr>
+                <p><em>More posts:</em></p>
+            {% endif %}
+
+            {% for post in posts %}
+                {% if not active_post or active_post and active_post.id != post.id %}
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">{{ post.title }}</h2>
+                        <p class="blog-post-meta">{{ post.pub_date|date:"d M, Y" }} by Anton Blomberg</p>
+                        {{ post.entry|safe }}
+                        <div class="blog-post-footer"></div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>Latest post</h4>
+                <a href="{{ latest_post.getUrl }}" class="latest-post-text">{{ latest_post.title }}</a>
+                <p><em><span class="latest-post-text">{{ latest_post.getPlainText|truncatechars:50 }}</span> <a href="#">Read more</a></em></p>
+            </div>
+            <div class="sidebar-module">
+                <h4>Previous posts</h4>
+                <ol class="list-unstyled">
+                    {% for post in posts|slice:"1:" %}
+                        <li><a href="{{ post.getUrl }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

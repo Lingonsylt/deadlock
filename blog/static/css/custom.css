@@ -140,3 +140,7 @@ body {
 .blog-main {
     border-right: #ecf0f1 solid 1px;
 }
+
+.about-main {
+    text-align: center;
+}

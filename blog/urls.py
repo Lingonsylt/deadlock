@@ -7,5 +7,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'p(?P<slug>[a-z0-9-]+)/', views.post, name="post"),
-    url(r'', views.index, name="index"),
+    url(r'', views.blog, name="blog"),
 )

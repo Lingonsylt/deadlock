@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 blog-main about-main">
+            <h1>Deadlock.se</h1>
+            <p>Interested in programming? You might want to check out the <a href="{% url "blog" %}">blog</a>!</p>
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>Contact</h4>
+                <ul class="list-unstyled">
+                    <li>Anton Blomberg</li>
+                    <li><a href="mailto:anton@deadlock.se">anton@deadlock.se</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

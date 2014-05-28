@@ -4,12 +4,19 @@ from django.shortcuts import render
 from blog.models import Post
 
 
-def index(request):
+def about(request):
+    return render(request, "blog/about.html", {'nav_about': True, 'page_title': "Deadlock"})
+
+
+def blog(request):
     posts = Post.objects.filter(publish=True).order_by("-pub_date")[:10]
     latest_post = None
     if len(posts):
         latest_post = posts[0]
-    return render(request, "blog/index.html", {'posts': posts, 'latest_post': latest_post})
+    return render(request, "blog/blog.html", {'posts': posts,
+                                               'latest_post': latest_post,
+                                               'nav_blog': True,
+                                               'page_title': "Deadlock - Blog"})
 
 
 def post(request, slug):
@@ -18,4 +25,8 @@ def post(request, slug):
     latest_post = None
     if len(posts):
         latest_post = posts[0]
-    return render(request, "blog/index.html", {'posts': posts, 'latest_post': latest_post, 'active_post': active_post})
+    return render(request, "blog/blog.html", {'posts': posts,
+                                               'latest_post': latest_post,
+                                               'active_post': active_post,
+                                               'nav_blog': True,
+                                               'page_title': "Deadlock - %s" % active_post.title})
