@@ -16,13 +16,5 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine', # If Whoosh is used,
-        #     pip install whoosh
-        'PATH': pth(BASE_DIR,'bootlog/whoosh_index'),
-        }
-}
-
-INSTALLED_APPS += (#'bootlog',
+INSTALLED_APPS += ('blog',
                    'ckeditor',)

@@ -51,6 +51,7 @@ body {
     border: none;
     border-radius: 0;
     -webkit-box-shadow: none;
+    overflow-x: hidden !important;
     box-shadow: none;
     margin: 0 !important;
 }
