@@ -10,10 +10,10 @@ from .views import BSearchView
 
 urlpatterns = patterns('',
     
-    url(r'^$',bviews.front_page_view),
-    url(r'^s/',search_view_factory(
-        view_class = BSearchView,
-        template = 'bootlog/base.html',
+    url(r'^$', bviews.front_page_view),
+    url(r'^s/', search_view_factory(
+        view_class=BSearchView,
+        template='bootlog/base.html',
         searchqueryset=SearchQuerySet(),
         form_class=ModelSearchForm
         ), name='haystack_search'),
@@ -24,10 +24,11 @@ urlpatterns = patterns('',
     #    searchqueryset = SearchQuerySet(),
     #    form_class=ModelSearchForm
     #    ), name='haystack_search'),
-    url(r'^about/$',bviews.view_function_factory("About Us")),
-    url(r'^ckeditor/',include('ckeditor.urls')),
+    url(r'^about/$', bviews.about),
+    url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^rss/$', bviews.LatestEntriesFeed(), ),
-    url(r'^all/',bviews.html_render),
+    url(r'^all/', bviews.html_render),
     url(r'^p/b(?P<blog_pk>\d+)p(?P<post_pk>\d+)/', bviews.perma_post, name="blog-post"),
-    url(r'^sitemap\.xml$','django.contrib.sitemaps.views.sitemap',{'sitemaps': {'site': bviews.BlogSitemap}}),
+    url(r'^p/(?P<slug>\d+)/', bviews.perma_post, name="blog-post"),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'site': bviews.BlogSitemap}}),
 )

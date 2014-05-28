@@ -29,11 +29,11 @@
 
 /*.navbar-inverse .navbar-nav>li>a {
     color: #111111;
-}
+}*/
 
 .navbar-inverse .navbar-brand {
-    color: #222222;
-} */
+    color: #d3d3d3;
+}
 .navbar {
     margin-bottom: 0px;
     border-radius: 0;
@@ -49,5 +49,13 @@
 }
 
 body {
-    /*background-color: #808080;*/
+    background-color: #dddddd;
+}
+
+.footer {
+    margin-right: -15px;
+}
+
+.about {
+    margin-right: -15px;
 }
