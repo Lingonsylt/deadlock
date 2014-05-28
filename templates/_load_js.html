@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/sh/shCore.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sh/shBrushPython.js' %}"></script>
+<script type="text/javascript">
+    document.onreadystatechange = function() {
+        if (document.readyState === 'complete') {
+            SyntaxHighlighter.all();
+        }
+    };
+
+    {% if debug %}
+        var disqus_developer = 1;
+        var disqus_shortname = 'deadlock-se-test';
+        var disqus_public_key = "baAUw3V00yvzQqIPGBSEa8DQw5ei7qRGnf5JJ0CYsvbcZ01i8OuiaYJ8vvLEea3K";
+
+    {% else %}
+        var disqus_public_key = "wajGbKMIpbo8w2WQ6O8asPM9sF2GamkeyvBY6Q5BxVND1ZDmktfpynIRjEDO2tki";
+        var disqus_shortname = 'deadlock-se';
+    {% endif %}
+
+    var thread_ids = [];
+
+    $('.count-comments').each(function () {
+        thread_ids.push('ident:' + $(this).attr('data-disqus-id'));
+    });
+
+    if (thread_ids.length) {
+        $.ajax({
+            type: 'GET',
+            url: "https://disqus.com/api/3.0/threads/set.jsonp",
+            data: { api_key: disqus_public_key, forum : disqus_shortname, thread : thread_ids },
+            cache: false,
+            dataType: 'jsonp',
+            success: function (result) {
+                for (var i in result.response) {
+                    console.log(result.response[i]);
+                    var countText = " comments";
+                    var count = result.response[i].posts;
+
+                    if (count == 1) {
+                        countText = " comment";
+                    }
+
+                    var comments = $('div[data-disqus-id="' + result.response[i].identifiers[0] + '"]');
+                    comments.html('<a href="' + comments.data('post-url') +
+                            '" class="load-comments"><span class="glyphicon glyphicon-comment"></span> ' +
+                            count + countText + '</a>');
+                }
+            }
+        });
+    }
+</script>

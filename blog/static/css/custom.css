@@ -145,3 +145,13 @@ body {
 .about-main {
     text-align: center;
 }
+
+.glyphicon-comment {
+    color: #cc7832;
+    top: 4px;
+}
+
+.count-comments {
+    text-align: right;
+    margin-bottom: 5px;
+}

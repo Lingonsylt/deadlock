@@ -9,7 +9,7 @@
 <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
-{% include "_syntaxhighlight.html" %}
+{% include "_load_css.html" %}
 </head>
 {% load i18n %}
 
@@ -75,6 +75,6 @@
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
-{% include "_syntaxhighlight_footer.html" %}
+{% include "_load_js.html" %}
 </body>
 </html>

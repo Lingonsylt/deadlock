@@ -18,6 +18,24 @@
                     {{ active_post.entry|safe }}
                     <div class="blog-post-footer"></div>
                 </div>
+
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    {% if debug %}
+                        var disqus_developer = 1;
+                        var disqus_shortname = 'deadlock-se-test';
+                    {% else %}
+                        var disqus_shortname = 'deadlock-se';
+                    {% endif %}
+
+                    var disqus_identifier = 'post/{{ active_post.id }}';
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 <hr>
                 <p><em>More posts:</em></p>
             {% endif %}
@@ -28,6 +46,8 @@
                         <h2 class="blog-post-title">{{ post.title }}</h2>
                         <p class="blog-post-meta">{{ post.pub_date|date:"d M, Y" }} by Anton Blomberg</p>
                         {{ post.entry|safe }}
+                        <hr>
+                        <div class="count-comments" data-post-url="{{ post.getUrl }}" data-disqus-id="post/{{ post.id }}"></div>
                         <div class="blog-post-footer"></div>
                     </div>
                 {% endif %}
