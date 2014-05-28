@@ -17,8 +17,8 @@ class Post(models.Model):
                                   )
 
     def getPlainText(self):
-        soup = BeautifulSoup.BeautifulSoup(self.entry)
-        return " ".join(soup.findAll(text=True))
+        text = " ".join(BeautifulSoup.BeautifulSoup(self.entry).findAll(text=True))
+        return text.replace("&nbsp;", "")
 
     def save(self, *args, **kwargs):
         if not self.id:
