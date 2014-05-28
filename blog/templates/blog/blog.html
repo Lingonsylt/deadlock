@@ -43,7 +43,7 @@
             {% for post in posts %}
                 {% if not active_post or active_post and active_post.id != post.id %}
                     <div class="blog-post">
-                        <h2 class="blog-post-title">{{ post.title }}</h2>
+                        <h2 class="blog-post-title"><a href="{{ post.getUrl }}">{{ post.title }}</a></h2>
                         <p class="blog-post-meta">{{ post.pub_date|date:"d M, Y" }} by Anton Blomberg</p>
                         {{ post.entry|safe }}
                         <hr>

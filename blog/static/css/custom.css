@@ -155,3 +155,11 @@ body {
     text-align: right;
     margin-bottom: 5px;
 }
+
+.blog-post-title a {
+    color: inherit;
+}
+
+.blog-post-title a:hover {
+    text-decoration: none;
+}
