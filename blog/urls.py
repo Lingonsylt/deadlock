@@ -6,5 +6,6 @@ from blog import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'', views.index),
+    url(r'p(?P<slug>[a-z0-9-]+)/', views.post, name="post"),
+    url(r'', views.index, name="index"),
 )

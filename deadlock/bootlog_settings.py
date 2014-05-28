@@ -24,5 +24,5 @@ HAYSTACK_CONNECTIONS = {
         }
 }
 
-INSTALLED_APPS += ('bootlog',
-                   'ckeditor')
+INSTALLED_APPS += (#'bootlog',
+                   'ckeditor',)
