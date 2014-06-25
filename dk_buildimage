@@ -1,0 +1,4 @@
+
+cp ~/.ssh/id_rsa.pub public_key
+sudo docker build -t deadlock_web .
+

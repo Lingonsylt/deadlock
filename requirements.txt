@@ -1,3 +1,5 @@
 Django==1.6.5
 django-haystack==2.1.0
 Whoosh==2.6.0
+South==0.8.4
+BeautifulSoup==3.2.1

@@ -1,7 +1,0 @@
-HOST="deadlock_web"
-if [ -n "$1" ]; then
-    HOST=$1
-fi
-IP=$(sudo docker inspect $HOST | grep IPAddress | cut -d '"' -f 4)
-ssh -o StrictHostKeychecking=no root@$IP -i fabric_rsa
-
