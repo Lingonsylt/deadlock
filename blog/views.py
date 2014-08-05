@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 # Create your views here.
@@ -20,7 +21,10 @@ def blog(request):
 
 
 def post(request, slug):
-    active_post = Post.objects.get(slug=slug)
+    try:
+        active_post = Post.objects.get(slug=slug)
+    except Post.DoesNotExist:
+        raise Http404()
     posts = Post.objects.filter(publish=True).order_by("-pub_date")[:10]
     latest_post = None
     if len(posts):
